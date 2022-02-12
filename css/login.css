@@ -1,0 +1,99 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+}
+body {
+    background-image: url(../img/bg-login.jpg);
+    background-size: cover;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+}
+
+.login-container {
+    display: flex;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.login-box {
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 30px;
+    border-radius: 4%;
+    box-shadow: 3px 3px 1px 1px rgba(0, 0, 0, 0.5);
+}
+
+.login-box h1 {
+    text-align: center;
+    color: #f796b7;
+    margin-bottom: 20px;
+}
+
+.login-text input {
+    width: 100%;
+    min-width: 180px;
+    display: inline-block;
+    padding: 5px 5px;
+    background-color: transparent;
+    border: none;
+    border-radius: none;
+    border-bottom: 2px solid #f796b7;
+    outline: none;
+    font-size: 1em;
+    transition: all .3s ease-out;
+}
+
+.login-text {
+    position: relative;
+    padding-top: 13px;
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
+.login-text input:focus {
+    border-bottom: 3px solid #f7598d;
+}
+
+.login-text label {
+    color: #f796b7;
+    pointer-events: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin-top: 13px;
+    transition: all .3s ease-out;
+
+}
+
+.login-text input:focus + label,
+.login-text input:valid + label {
+    font-size: 13px;
+    margin-top: 0;
+}
+.center {
+    display: flex;
+    justify-content: center;
+}
+.login-btn {
+    background-color: transparent;
+    border: none;
+    background-color: #f796b7;
+    border-radius: 4px;
+    font-weight: bold;
+    font-size: 12pt;
+    color: #f0f0f0;
+    outline: none;
+    padding: 7px;
+    margin-top: 20px;
+    cursor: pointer;
+    transition: all .4s ease-out;
+}
+
+.login-btn:hover {
+    background-color: #f7a5c18e;
+    color: #f0f0f0;
+}
