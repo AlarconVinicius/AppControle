@@ -1,5 +1,6 @@
 <?php
 
+    include "../sistema_login/valida_acesso.php";
     $acao = 'recuperarT';
     require 'controller.php';
 
@@ -37,7 +38,7 @@
             </a>
             <ul class="navbar-nav">
                 <li class="nav-item">
-                <a href="index.html" class="nav-link ">SAIR</a>
+                <a href="../sistema_login/logout.php" class="nav-link ">SAIR</a>
                 </li>
             </ul>
         </div>

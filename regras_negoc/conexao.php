@@ -19,8 +19,8 @@
                 return $conexao;
 
             } catch(PDOException $e) {
-
-                echo '<p>' .$e->getMessage(). '</p>';
+                $msgErro = '<p>Conexão erro: ' .$e->getMessage(). '</p>';
+                return $msgErro;
             }
         }
     }

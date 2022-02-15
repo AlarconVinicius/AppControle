@@ -1,3 +1,8 @@
+<?php
+
+    include "../sistema_login/valida_acesso.php";
+
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -26,7 +31,7 @@
             </a>
             <ul class="navbar-nav">
                 <li class="nav-item">
-                <a href="index.html" class="nav-link ">SAIR</a>
+                <a href="../sistema_login/logout.php" class="nav-link ">SAIR</a>
                 </li>
             </ul>
         </div>
