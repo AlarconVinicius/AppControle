@@ -67,9 +67,9 @@
                                 <div class="row mb-3 d-flex align-items-center tarefa">
                                     <div class="col-sm-9"> <?=$tarefa->tarefa?> (<?=$tarefa->status?>)</div>
                                     <div class="col-sm-3 mt-2 d-flex justify-content-between">
-                                        <i class="fas fa-trash-alt fa-lg text-danger"></i>
+                                        <a href="todas_tarefas.php?acao=deletarT&id=<?=$tarefa->id_tarefa?>"><i class="fas fa-trash-alt fa-lg text-danger"></i></a>
 
-                                        <a href="edit.php?id=<?=$tarefa->id_tarefa?>"><i class="fas fa-edit fa-lg text-info"></i></a>
+                                        <a href="../regras_negoc/edit.php?id=<?=$tarefa->id_tarefa?>"><i class="fas fa-edit fa-lg text-info"></i></a>
 
                                         <i class="fas fa-check-square fa-lg text-success"></i>
                                     </div>

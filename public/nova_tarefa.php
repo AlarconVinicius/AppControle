@@ -64,7 +64,7 @@
                             <form method="post" action="controller.php?acao=inserirT">
                                 <div class="form-group">
                                     <label>Descrição da tarefa:</label>
-                                    <input type="text" class="form-control" name="tarefa"  placeholder="Exemplo: Lavar o carro" required>
+                                    <input type="text" class="form-control" name="tarefa"  placeholder="Exemplo: Pagar boleto" required>
                                 </div>
 
                                 <button class="btn btn-success">Cadastrar</button>

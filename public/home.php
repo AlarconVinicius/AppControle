@@ -29,7 +29,7 @@
                 <img src="../img/logo.png" width="30" height="30" class="d-inline-block align-top" alt="">
                 Adm Clínica
             </a>
-            <p><?php echo "Olá, " . $_SESSION['nome'];?></p>
+            <p class="bem-vindo"><?php echo "Olá, <b>" . $_SESSION['nome'] ."</b>";?></p>
             <ul class="navbar-nav">
                 <li class="nav-item">
                 <a href="../sistema_login/logout.php" class="nav-link ">SAIR</a>

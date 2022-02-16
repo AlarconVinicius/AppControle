@@ -2,7 +2,7 @@
 
     include "../sistema_login/valida_acesso.php";
     $acao = 'recuperarT';
-    require 'controller.php';
+    require '../public/controller.php';
 
     /* echo '<pre>';
 	print_r($tarefas);
@@ -43,11 +43,12 @@
         </div>
     </nav>
 
-    <?php if(isset($_GET['salvo']) && ($_GET['salvo']) == 1) { ?>
+    <?php if(isset($_GET['salvo']) && ($_GET['salvo']) == 2) { ?>
         <div class="bg-success pt-2 text-white d-flex justify-content-center">
-            <h5>Tarefa inserida com sucesso!</h5>
+            <h5>Tarefa atualizada com sucesso!</h5>
         </div>
     <?php } ?>
+    
     <div class="container app">
 
             <div class="col-md-12">
@@ -56,17 +57,21 @@
                         <div class="col">
                             <h4>Atualizar tarefa</h4>
                             <hr />
-                            
-                            <form method="post" action="controller.php?acao=atualizarT">
-                                <div class="form-group">
-                                    <label>Descrição da tarefa:</label>
-                                    <input type="text" class="form-control" name="tarefa"  placeholder="Exemplo: Lavar o carro" required value="<?=$tarefa->tarefa?>">
-                                    <input type="hidden" name="id_tarefa" value="<?=$tarefa->id_tarefa?>">
-                                </div>
+                            <?php foreach($tarefas as $indice => $tarefa) {?>
 
-                                <a href="todas_tarefas.php" class="btn btn-info">Voltar</a>
-                                <button class="btn btn-success">Salvar</button>
-                            </form>
+                                <?php if(isset($_GET['id']) && $_GET['id'] == $tarefa->id_tarefa) { ?>
+                                    <form method="post" action="../public/controller.php?acao=atualizarT">
+                                        <div class="form-group">
+                                            <label>Descrição da tarefa:</label>
+                                            <input type="text" class="form-control" name="tarefa"  placeholder="Exemplo: Lavar o carro" required value="<?=$tarefa->tarefa?>">
+                                            <input type="hidden" name="id_tarefa" value="<?=$tarefa->id_tarefa?>">
+                                        </div>
+
+                                        <a href="todas_tarefas.php" class="btn btn-info">Voltar</a>
+                                        <button class="btn btn-success">Salvar</button>
+                                    </form>
+                                <?php } ?>
+                            <?php } ?>
                         </div>
                     </div>
                 </div>

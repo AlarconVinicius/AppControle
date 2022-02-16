@@ -33,8 +33,8 @@
     } else if($acao == 'atualizarT') {
 
         $tarefa = new Tarefa();
+        $tarefa->__set('tarefa', $_POST['tarefa']); 
         $tarefa->__set('id_tarefa', $_POST['id_tarefa']);
-        $tarefa->__set('tarefa', $_POST['tarefa']);
 
         $conexao = new Conexao();
 
@@ -42,11 +42,11 @@
         $tarefaService->atualizarT();
 
         if($tarefaService->atualizarT()) {
-            header('Location: todas_tarefas.php');
+            header('Location: todas_tarefas.php?salvo=2');
         } 
         echo 'CHEGUEI AQUI';
 
-    } else if( $acao == 'deletar') {
+    } else if( $acao == 'deletarT') {
 
         $tarefa = new Tarefa();
         $tarefa->__set('id_tarefa', $_GET['id']);
@@ -56,7 +56,10 @@
         $tarefaService = new TarefaService($conexao, $tarefa);
         $tarefaService->deletarT();
 
-        header('Location: todas_tarefas.php');
+        /* header('Location: todas_tarefas.php'); */
+        /* if($tarefaService->deletarT()) {
+            header('Location: todas_tarefas.php?salvo=3');
+        } */
 
     }
 

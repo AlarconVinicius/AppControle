@@ -30,9 +30,9 @@
             return $stmt->execute();
         }
         public function deletarT() {
-            $query = "delete from tb_tarefa where id_tarefa = :id";
+            $query = "delete from tb_tarefa where id_tarefa = ?";
             $stmt = $this->conexao->prepare($query);
-            $stmt->bindValue(':id', $this->tarefa->__get('id_tarefa '));
+            $stmt->bindValue(1, $this->tarefa->__get('id_tarefa '));
             $stmt->execute();
         }
         

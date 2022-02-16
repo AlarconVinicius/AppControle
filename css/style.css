@@ -11,6 +11,12 @@
 	padding:25px !important;
 }
 
+.bem-vindo {
+	text-align: center;
+	margin-top: 17px;
+	font-size: 18px;
+}
+
 li.list-group-item.active {
 	background-color: #fff;
 	border-color: #009933;
