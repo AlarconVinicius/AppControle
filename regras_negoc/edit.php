@@ -67,7 +67,7 @@
                                             <input type="hidden" name="id_tarefa" value="<?=$tarefa->id_tarefa?>">
                                         </div>
 
-                                        <a href="todas_tarefas.php" class="btn btn-info">Voltar</a>
+                                        <a href="../public/todas_tarefas.php" class="btn btn-info">Voltar</a>
                                         <button class="btn btn-success">Salvar</button>
                                     </form>
                                 <?php } ?>
