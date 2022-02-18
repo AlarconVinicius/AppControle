@@ -1,4 +1,4 @@
-# AppListaTarefas
+# AppControle Admin
 ### Projeto construído com:
 * PHP 7
 * MySQL 10.4.21
