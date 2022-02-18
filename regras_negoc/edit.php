@@ -60,7 +60,7 @@
                             <?php foreach($tarefas as $indice => $tarefa) {?>
 
                                 <?php if(isset($_GET['id']) && $_GET['id'] == $tarefa->id_tarefa) { ?>
-                                    <form method="post" action="../public/controller.php?acao=atualizarT">
+                                    <form method="post" action="../public/controller.php?pag=home&acao=atualizarT">
                                         <div class="form-group">
                                             <label>Descrição da tarefa:</label>
                                             <input type="text" class="form-control" name="tarefa"  placeholder="Exemplo: Lavar o carro" required value="<?=$tarefa->tarefa?>">

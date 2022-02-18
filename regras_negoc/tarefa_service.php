@@ -16,7 +16,12 @@
             $stmt->execute();
         }
         public function recuperarT() {
-            $query = 'select t.id_tarefa, s.status, t.tarefa from tb_tarefa as t left join tb_status_tarefa as s on (t.id_status = s.id_status)';
+            $query = 'select
+                         t.id_tarefa, s.status, t.tarefa 
+                    from 
+                        tb_tarefa as t 
+                        left join tb_status_tarefa as s 
+                        on (t.id_status = s.id_status)';
             $stmt = $this->conexao->prepare($query);
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_OBJ);
@@ -29,11 +34,34 @@
             $stmt->bindValue(2, $this->tarefa->__get('id_tarefa'));
             return $stmt->execute();
         }
-        public function deletarT() {
+        public function deletarT($id) {
             $query = "delete from tb_tarefa where id_tarefa = ?";
             $stmt = $this->conexao->prepare($query);
-            $stmt->bindValue(1, $this->tarefa->__get('id_tarefa '));
+            $stmt->bindValue(1, $id);
+            /* $stmt->bindValue(1, $this->tarefa->__get('id_tarefa ')); */
             $stmt->execute();
+        }
+
+        public function realizarT() {
+            $query = "update tb_tarefa set id_status = ? where id_tarefa = ?";
+            $stmt = $this->conexao->prepare($query);
+            $stmt->bindValue(1, $this->tarefa->__get('id_status'));
+            $stmt->bindValue(2, $this->tarefa->__get('id_tarefa'));
+            return $stmt->execute();
+        }
+
+        public function pendentesT() {
+
+            $query = "select 
+                        t.id_tarefa, s.status, t.tarefa
+                     from tb_tarefa as t
+                     left join tb_status_tarefa as s
+                     on (t.id_status = s.id_status)
+                     where t.id_status = ?";
+            $stmt = $this->conexao->prepare($query);
+            $stmt->bindValue(1, $this->tarefa->__get('id_status'));
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_OBJ);
         }
         
     }

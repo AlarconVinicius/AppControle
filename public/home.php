@@ -1,6 +1,7 @@
 <?php
-
     include "../sistema_login/valida_acesso.php";
+    $acao = 'pendentesT';
+    require "../regras_negoc/controller.php";
     
 ?>
 <!DOCTYPE html>
@@ -38,6 +39,18 @@
         </div>
     </nav>
 
+    <?php if(isset($_GET['salvo']) && ($_GET['salvo']) == 2) { ?>
+        <div class="bg-success pt-2 text-white d-flex justify-content-center">
+            <h5>Tarefa Atualizada com Sucesso!</h5>
+        </div>
+    <?php } ?>
+
+    <?php if(isset($_GET['salvo']) && ($_GET['salvo']) == 3) { ?>
+        <div class="bg-success pt-2 text-white d-flex justify-content-center">
+            <h5>Tarefa Excluída!</h5>
+        </div>
+    <?php } ?>
+    
     <div class="container app">
         <div class="row">
             <div class="col-md-3 menu">
@@ -57,23 +70,23 @@
                             <h4>Tarefas pendentes</h4>
                             <hr />
 
-                            <div class="row mb-3 d-flex align-items-center tarefa">
-                                <div class="col-sm-9">Lavar o carro</div>
-                                <div class="col-sm-3 mt-2 d-flex justify-content-between">
-                                    <i class="fas fa-trash-alt fa-lg text-danger"></i>
-                                    <i class="fas fa-edit fa-lg text-info"></i>
-                                    <i class="fas fa-check-square fa-lg text-success"></i>
-                                </div>
-                            </div>
+                            <?php foreach($tarefas as $indice => $tarefa) { ?>
+                                <!-- <?php 
+                                    echo '<pre>';
+                                    print_r($tarefa);
+                                ?> -->
+                                <div class="row mb-3 d-flex align-items-center tarefa">
+                                    <div class="col-sm-9"> <?=$tarefa->tarefa?> (<?=$tarefa->status?>)</div>
+                                    <div class="col-sm-3 mt-2 d-flex justify-content-between">
+                                        <a href="todas_tarefas.php?pag=home&acao=deletarT&id=<?=$tarefa->id_tarefa?>"><i class="fas fa-trash-alt fa-lg text-danger"></i></a>
 
-                            <div class="row mb-3 d-flex align-items-center tarefa">
-                                <div class="col-sm-9">Passear com o cachorro</div>
-                                <div class="col-sm-3 mt-2 d-flex justify-content-between">
-                                    <i class="fas fa-trash-alt fa-lg text-danger"></i>
-                                    <i class="fas fa-edit fa-lg text-info"></i>
-                                    <i class="fas fa-check-square fa-lg text-success"></i>
+                                        <a href="../regras_negoc/edit.php?id=<?=$tarefa->id_tarefa?>"><i class="fas fa-edit fa-lg text-info"></i></a>
+
+                                        <a href="todas_tarefas.php?pag=home&acao=realizarT&id=<?=$tarefa->id_tarefa?>"><i class="fas fa-check-square fa-lg text-success"></i></a>
+                                        
+                                    </div>
                                 </div>
-                            </div>
+                            <?php } ?>
                         </div>
                     </div>
                 </div>

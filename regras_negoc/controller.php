@@ -42,9 +42,13 @@
         $tarefaService->atualizarT();
 
         if($tarefaService->atualizarT()) {
-            header('Location: todas_tarefas.php?salvo=2');
+
+            if(isset($_GET['pag']) && $_GET['pag'] == 'home'){
+                header('Location: home.php?salvo=2');
+            } else{
+                header('Location: todas_tarefas.php?salvo=2');
+            }
         } 
-        echo 'CHEGUEI AQUI';
 
     } else if( $acao == 'deletarT') {
 
@@ -52,15 +56,43 @@
         $tarefa->__set('id_tarefa', $_GET['id']);
 
         $conexao = new Conexao();
+        $id = $_GET['id'];
+        $tarefaService = new TarefaService($conexao, $tarefa);
+        $tarefaService->deletarT($id);
+
+        if(isset($_GET['pag']) && $_GET['pag'] == 'home'){
+            header('Location: home.php?salvo=3');
+        } else{
+            header('Location: todas_tarefas.php?salvo=3');
+        }
+        
+        
+    } else if( $acao == 'realizarT') {
+
+        $tarefa = new Tarefa();
+        $tarefa->__set('id_tarefa', $_GET['id']);
+        $tarefa->__set('id_status', 2); 
+
+        $conexao = new Conexao();
 
         $tarefaService = new TarefaService($conexao, $tarefa);
-        $tarefaService->deletarT();
+        $tarefaService->realizarT();
 
-        /* header('Location: todas_tarefas.php'); */
-        /* if($tarefaService->deletarT()) {
-            header('Location: todas_tarefas.php?salvo=3');
-        } */
+        if($tarefaService->realizarT()) {
 
+            if(isset($_GET['pag']) && $_GET['pag'] == 'home'){
+                header('Location: home.php?salvo=4');
+            } else{
+                header('Location: todas_tarefas.php?salvo=4');
+            }
+        } 
+    } else if( $acao == 'pendentesT') { 
+        $tarefa = new Tarefa();
+        $tarefa->__set('id_status', 1);
+
+        $conexao = new Conexao();
+
+        $tarefaService = new TarefaService($conexao, $tarefa);
+        $tarefas = $tarefaService->pendentesT();
     }
-
 ?>
