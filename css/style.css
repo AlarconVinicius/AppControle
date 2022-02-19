@@ -37,3 +37,9 @@ h4 {
 	color: #009933 !important;
 }
 
+.desc_text{
+	max-width: 25ch;
+  	overflow: hidden;
+  	text-overflow: ellipsis;
+  	white-space: nowrap;
+}

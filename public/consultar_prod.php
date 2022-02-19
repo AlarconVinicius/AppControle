@@ -1,6 +1,11 @@
 <?php
 
     include "../sistema_login/valida_acesso.php";
+    $acao = "recuperarP";
+    require "controller_prod.php";
+    /* echo "<pre>";
+    print_r($produtos);
+    echo "</pre>"; */
 
 ?>
 <!DOCTYPE html>
@@ -37,6 +42,18 @@
         </div>
     </nav>
 
+    <?php if(isset($_GET['salvo']) && ($_GET['salvo']) == 2) { ?>
+        <div class="bg-success pt-2 text-white d-flex justify-content-center">
+            <h5>Produto Atualizado com Sucesso!</h5>
+        </div>
+    <?php } ?>
+
+    <?php if(isset($_GET['salvo']) && ($_GET['salvo']) == 3) { ?>
+        <div class="bg-success pt-2 text-white d-flex justify-content-center">
+            <h5>Produto Excluído!</h5>
+        </div>
+    <?php } ?>
+
     <div class="container app">
         <div class="row">
             <div class="col-md-3 menu">
@@ -61,43 +78,42 @@
                               </form>
                             <div class="table-responsive">
                                 <table class="table table-hover table-bordered border border-primary">
-                                  <thead class="thead-light">
+                                  <thead class="thead-light text-center">
                                     <tr>
                                       <th scope="col">#</th>
                                       <th scope="col">Produto</th>
-                                      <th scope="col">Evento</th>
-                                      <th scope="col">Data</th>
-                                      <th scope="col">Usuário</th>
-                                      <th scope="col">Quantidade</th>
+                                      <th scope="col">Descrição</th>
+                                      <th scope="col">Status</th>
+                                      <th scope="col">Data Cadastro</th>
+                                      <th scope="col">Estoque</th>
                                       <th scope="col">...</th>
                                     </tr>
                                   </thead>
-                                  <tbody>
-                                    <tr>
-                                      <td>1</td>
-                                      <td>Agulha</td>
-                                      <td>Entrada</td>
-                                      <td>17/01/2022 10:10</td>
-                                      <td>Camila Manso Vianna</td>
-                                      <td>20</td>
-                                      <td>
-                                        <i class="fas fa-trash-alt fa-lg text-danger"></i>
+                                  <tbody class="text-center">
+                                    <?php foreach($produtos as $indice=>$produto) { 
+                                      
+                                      /* echo '<pre>';
+                                      print_r($produtos);
+                                      echo '<pre>'; */
+                                      ?>
+                                      
+                                      <tr>
+                                        <td><?= $produto->id_prod ?></td>
+                                        <td  class="text-truncate" style="max-width: 150px;"><?= $produto->nome_prod ?></td>
+                                        <td class="text-truncate" style="max-width: 170px;"><?= $produto->descricao_prod ?></td>
+                                        <td><?= $produto->status ?></td>
+                                        <td><?= $produto->data_cadastro_prod ?></td>
+                                        <td><?= $produto->estoque_prod ?></td>
+                                        <td>
+                                          
+                                          <!-- <i class="fas fa-trash-alt fa-lg text-danger"></i> -->
 
-                                        <a href="#"><i class="fas fa-edit fa-lg text-warning" data-toggle="modal" data-target="#modal-edit"></i></a>
-                                      </td>
-                                    </tr>
-                                    <tr>
-                                      <td>2</td>
-                                      <td>Botox</td>
-                                      <td>Saída</td>
-                                      <td>17/01/2022 10:15</td>
-                                      <td>Camila Manso Vianna</td>
-                                      <td>3</td>
-                                      <td>
-                                        <a class='btn btn-sm btn-warning'>Edit</a> 
-                                        <a class='btn btn-sm btn-danger'>X</a>
-                                      </td>
-                                    </tr>
+                                          <a href="../regras_negoc/visual"><i class="fas fa-search fa-lg"></i></a>
+
+                                          <a href="../regras_negoc/edit_prod.php?$id=<?= $produto->id_prod ?>"><i class="fas fa-edit fa-lg text-warning"></i></a>
+                                        </td>
+                                      </tr>
+                                    <?php } ?>
                                   </tbody>
                                 </table>
                               </div>

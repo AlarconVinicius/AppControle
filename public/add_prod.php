@@ -37,6 +37,12 @@
         </div>
     </nav>
 
+    <?php if(isset($_GET['salvo']) && ($_GET['salvo']) == 1) { ?>
+        <div class="bg-success pt-2 text-white d-flex justify-content-center">
+            <h5>Produto registrado com sucesso!</h5>
+        </div>
+    <?php } ?>
+
     <div class="container app">
         <div class="row">
             <div class="col-md-3 menu">
@@ -56,20 +62,21 @@
                             <h4>Adicionar Produto</h4>
                             <hr />
 
-                            <form method="post" action="controller.php">
-                                <div class="form-group">
-                                  <label>Nome</label>
-                                  <input name="nome_prod" type="text" class="form-control" placeholder="Produto" required>
+                            <form method="post" action="controller_prod.php?acao=inserirP">
+                                <div class="form-row">
+                                    <div class="form-group col-md-10">
+                                    <label>Nome</label>
+                                    <input name="nome_prod" type="text" class="form-control" placeholder="Produto" required>
+                                    </div>
+                                    <div class="form-group col-md-2">
+                                        <label>Estoque</label>
+                                        <input name="estoque_prod" type="number" min="0" max="500" class="form-control" value="0">
+                                    </div>
                                 </div>
             
-                                <!-- <div class="form-group">
-                                  <label>Data/Hora</label>
-                                  <input name="data_hora" type="datetime-local" class="form-control" min='2022-01-01 00:00:00' max='2022-12-31 00:00:00'>
-                                </div> -->
-                                
                                 <div class="form-group">
                                   <label>Descrição</label>
-                                  <textarea name="descricao_prod" class="form-control" rows="3" required></textarea>
+                                  <textarea name="descricao_prod" class="form-control" rows="3"></textarea>
                                 </div>
             
                                 <button class="btn btn-success">Cadastrar</button>
