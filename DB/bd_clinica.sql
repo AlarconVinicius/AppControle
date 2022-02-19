@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 04-Fev-2022 às 16:08
+-- Tempo de geração: 19-Fev-2022 às 01:34
 -- Versão do servidor: 10.4.21-MariaDB
 -- versão do PHP: 8.0.12
 
@@ -23,16 +23,22 @@ SET time_zone = "+00:00";
 
 -- --------------------------------------------------------
 
+-- ZERAR O ID DA TABELA
+
+-- ALTER TABLE `bd_clinica`.`tb_produto` DROP `id_prod`;
+
+-- ALTER TABLE `bd_clinica`.`tb_produto` ADD `id_prod` INT(255) NOT NULL AUTO_INCREMENT FIRST, ADD PRIMARY KEY (`id_prod`);
 --
 -- Estrutura da tabela `tb_produto`
 --
 
 CREATE TABLE `tb_produto` (
-  `id_prod` int(11) NOT NULL,
+  `id_prod` int(255) NOT NULL,
   `nome_prod` char(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   `descricao_prod` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `id_status` int(11) NOT NULL DEFAULT 1,
-  `data_cadastro_prod` datetime NOT NULL DEFAULT current_timestamp()
+  `data_cadastro_prod` date NOT NULL DEFAULT current_timestamp(),
+  `estoque_prod` int(255) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -45,6 +51,14 @@ CREATE TABLE `tb_status_prod` (
   `id_status` int(11) NOT NULL,
   `status` char(10) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Extraindo dados da tabela `tb_status_prod`
+--
+
+INSERT INTO `tb_status_prod` (`id_status`, `status`) VALUES
+(1, 'Ativo'),
+(2, 'Não Ativo');
 
 -- --------------------------------------------------------
 
@@ -78,15 +92,19 @@ CREATE TABLE `tb_tarefa` (
   `data_tarefa` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+-- --------------------------------------------------------
+
 --
--- Extraindo dados da tabela `tb_tarefa`
+-- Estrutura da tabela `tb_usuario`
 --
 
-INSERT INTO `tb_tarefa` (`id_tarefa`, `tarefa`, `id_status`, `data_tarefa`) VALUES
-(3, 'Modal Funciona', 1, '2022-01-27 11:42:45'),
-(4, 'Segundo Teste', 2, '2022-01-27 11:47:09'),
-(5, 'Teste', 1, '2022-01-27 12:12:50'),
-(6, 'Pagar boleto', 1, '2022-01-27 13:12:46');
+CREATE TABLE `tb_usuario` (
+  `id_usuario` int(11) NOT NULL,
+  `nome` varchar(40) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `telefone` varchar(15) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `senha` varchar(32) COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Índices para tabelas despejadas
@@ -119,6 +137,12 @@ ALTER TABLE `tb_tarefa`
   ADD KEY `id_status` (`id_status`);
 
 --
+-- Índices para tabela `tb_usuario`
+--
+ALTER TABLE `tb_usuario`
+  ADD PRIMARY KEY (`id_usuario`);
+
+--
 -- AUTO_INCREMENT de tabelas despejadas
 --
 
@@ -126,13 +150,13 @@ ALTER TABLE `tb_tarefa`
 -- AUTO_INCREMENT de tabela `tb_produto`
 --
 ALTER TABLE `tb_produto`
-  MODIFY `id_prod` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_prod` int(255) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de tabela `tb_status_prod`
 --
 ALTER TABLE `tb_status_prod`
-  MODIFY `id_status` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_status` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de tabela `tb_status_tarefa`
@@ -144,7 +168,13 @@ ALTER TABLE `tb_status_tarefa`
 -- AUTO_INCREMENT de tabela `tb_tarefa`
 --
 ALTER TABLE `tb_tarefa`
-  MODIFY `id_tarefa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_tarefa` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de tabela `tb_usuario`
+--
+ALTER TABLE `tb_usuario`
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Restrições para despejos de tabelas
