@@ -56,6 +56,8 @@
                                /*  echo "<pre>";
                                 print_r($produto);
                                 echo "</pre>"; */?>
+                                <?php
+                                 if(isset($_GET['id']) && $_GET['id'] == $produto->id_prod) { ?>
                                 
                                 <form method="post" action="controller_prod.php?acao=atualizarP">
                                     <input type="hidden" name="id_prod" value="<?=$produto->id_prod?>">
@@ -96,7 +98,7 @@
                                     <a href="../public/consultar_prod.php" class="btn btn-info">Voltar</a>
                                     <button class="btn btn-success">Salvar</button>
                                 </form>
-                                
+                                <?php } ?>
                             <?php } ?>
                         </div>
                     </div>

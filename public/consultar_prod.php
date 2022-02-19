@@ -110,7 +110,7 @@
 
                                           <a href="../regras_negoc/visual"><i class="fas fa-search fa-lg"></i></a>
 
-                                          <a href="../regras_negoc/edit_prod.php?$id=<?= $produto->id_prod ?>"><i class="fas fa-edit fa-lg text-warning"></i></a>
+                                          <a href="../regras_negoc/edit_prod.php?id=<?= $produto->id_prod ?>"><i class="fas fa-edit fa-lg text-warning"></i></a>
                                         </td>
                                       </tr>
                                     <?php } ?>
